@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/cart_page.dart';
+import 'package:flutter_app/model/cart_model.dart';
 import 'package:provider/provider.dart';
 
 class BottomBar extends StatelessWidget {
@@ -87,7 +87,7 @@ class BottomBar extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  Text("${cartData.carItemCount.toStringAsFixed(2)}"),
+                  Text("${cartData.totalPrice.toStringAsFixed(2)}"),
                   IconButton(
                     icon: Icon(
                       Icons.shopping_basket,

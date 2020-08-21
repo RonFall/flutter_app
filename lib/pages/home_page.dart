@@ -57,7 +57,12 @@ class HomePage extends StatelessWidget {
                 padding: const EdgeInsets.all(15),
                 child: Text("Smartphone's catalog."),
               ),
-              ...productData.itemList.map((e) => CatalogListTile(imgUrl: e.imageUrl)).toList(),
+              ...productData.itemList.map((e) =>
+                  CatalogListTile(
+                    title: e.title,
+                    imgUrl: e.imageUrl,
+                    rating: e.rating,
+                  )).toList(),
             ],
           ),
         ),

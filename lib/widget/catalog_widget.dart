@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 class CatalogListTile extends StatelessWidget {
 
-  final imgUrl;
+  final imgUrl, title, rating;
 
-  const CatalogListTile({Key key, this.imgUrl}) : super(key: key);
+  const CatalogListTile({Key key, this.imgUrl, this.title, this.rating}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class CatalogListTile extends StatelessWidget {
               ),
             ),
           ),
-          title: Text("Набор смартфнов"),
+          title: Text(title),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -33,7 +33,7 @@ class CatalogListTile extends StatelessWidget {
               Row(
                 children: <Widget>[
                   Icon(Icons.star, size: 20, color: Colors.amber,),
-                  Text("4.9"),
+                  Text(rating),
                 ],
               )
             ],

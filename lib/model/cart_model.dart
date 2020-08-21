@@ -2,11 +2,11 @@ import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
 
-class CartPage {
-  final String title, imgUrl;
-  final num id, count, price;
+class Cart {
+  final String id, title, imgUrl;
+  final num count, price;
 
-  CartPage({
+  Cart({
       @required this.id,
       @required this.title,
       @required this.count,
@@ -16,9 +16,9 @@ class CartPage {
 }
 
 class CartProvider with ChangeNotifier {
-  Map<String, CartPage> _cartItems = {};
+  Map<String, Cart> _cartItems = {};
 
-  UnmodifiableMapView<String, CartPage> get cartItems => UnmodifiableMapView(_cartItems);
+  UnmodifiableMapView<String, Cart> get cartItems => UnmodifiableMapView(_cartItems);
   int get carItemCount => _cartItems.length;
 
   double get totalPrice {
@@ -31,16 +31,17 @@ class CartProvider with ChangeNotifier {
   
   void addItem({product, price, title, imgUrl}) {
     if (_cartItems.containsKey(product)) {
-      _cartItems.update(product, (ex) => CartPage(
+      _cartItems.update(product, (ex) => Cart(
         id: ex.id,
         price: ex.price,
         title: ex.title,
+
         imgUrl: ex.imgUrl,
         count: ex.count + 1,
       ));
     } else {
-      _cartItems.putIfAbsent(product, () => CartPage(
-        id: 0,
+      _cartItems.putIfAbsent(product, () => Cart(
+        id: "${DateTime.now()}",
         price: price,
         title: title,
         imgUrl: imgUrl,
@@ -56,7 +57,7 @@ class CartProvider with ChangeNotifier {
   }
 
   void updateCartAddItems(String product) {
-    _cartItems.update(product, (ex) => CartPage(
+    _cartItems.update(product, (ex) => Cart(
       id: ex.id,
       price: ex.price,
       title: ex.title,
@@ -68,7 +69,7 @@ class CartProvider with ChangeNotifier {
 
   void updateCartSubItems(String product) {
     if (_cartItems[product].count < 2) deleteItem(product);
-    else _cartItems.update(product, (ex) => CartPage(
+    else _cartItems.update(product, (ex) => Cart(
       id: ex.id,
       price: ex.price,
       title: ex.title,
